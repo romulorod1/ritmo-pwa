@@ -34,7 +34,7 @@ enviar dados do usuário para serviços externos.
 - [x] Edição de plano, backup e restauração.
 - [x] Manifesto, ícones e service worker.
 - [x] Testes, build e auditoria offline.
-- [ ] Versionamento e backup remoto no GitHub.
+- [x] Versionamento e backup remoto no GitHub privado.
 
 ## Validação em 13/09/2026
 
@@ -46,4 +46,5 @@ enviar dados do usuário para serviços externos.
 
 ## Próximo passo
 
-Autenticar no GitHub, iniciar o repositório e publicar o primeiro backup do código-fonte.
+Escolher a forma de distribuição para instalação: GitHub Pages público, hospedagem com acesso
+restrito ou pacote Android.

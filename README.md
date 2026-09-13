@@ -22,8 +22,9 @@ npm run test:e2e
 
 ## Publicação
 
-O workflow em `.github/workflows/deploy-pages.yml` valida o projeto, gera a PWA e publica `dist`
-no GitHub Pages após cada envio para a branch `main`.
+O workflow em `.github/workflows/deploy-pages.yml` valida o projeto e gera a PWA após cada envio
+para a branch `main`. A publicação de `dist` no GitHub Pages só ocorre quando o workflow é iniciado
+manualmente.
 
 O GitHub Pages disponibiliza o site publicamente. Antes de ativá-lo, confirme que os dados
 incluídos no plano inicial podem ser expostos; os registros criados durante o uso permanecem no

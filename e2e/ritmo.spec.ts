@@ -31,6 +31,18 @@ test('fluxos principais persistem após recarregar', async ({ page }) => {
   await expect(latestRecord.getByText('65.20 kg', { exact: true })).toBeVisible()
 })
 
+test('modo treino conduz rounds e pausa cronometrada', async ({ page }) => {
+  await openAtPlanStart(page)
+  await page.getByRole('button', { name: 'Iniciar treino' }).click()
+  await expect(page.getByRole('dialog', { name: 'Modo treino' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Sombra técnica' })).toBeVisible()
+  await page.getByRole('button', { name: 'Iniciar round' }).click()
+  await expect(page.getByText('Round em curso')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Pausar' })).toBeVisible()
+  await page.getByRole('button', { name: 'Pular' }).click()
+  await expect(page.getByText('Descanso')).toBeVisible()
+})
+
 test('exporta e restaura backup validado', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('button', { name: 'Ajustes' }).click()

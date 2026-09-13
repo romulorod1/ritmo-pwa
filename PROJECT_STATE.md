@@ -35,16 +35,21 @@ enviar dados do usuário para serviços externos.
 - [x] Manifesto, ícones e service worker.
 - [x] Testes, build e auditoria offline.
 - [x] Versionamento e backup remoto no GitHub privado.
+- [x] Modo de treino com séries individuais, pausas e rounds cronometrados.
+- [x] Histórico de carga por exercício e resumo semanal de volume.
+- [x] Registro de condicionamento e artes marciais durante o treino.
 
 ## Validação em 13/09/2026
 
-- `npm run check`: lint, 8 testes unitários e build de produção concluídos.
-- `npm run test:e2e`: 3 cenários concluídos no Edge: persistência local, backup/restauração
-  e funcionamento offline após o primeiro acesso.
+- `npm run check`: lint, 11 testes unitários e build de produção concluídos.
+- `npm run test:e2e`: 4 cenários concluídos no Edge: persistência local, backup/restauração,
+  funcionamento offline e execução de rounds com pausa cronometrada.
 - Corrigida uma competição entre a gravação de refeições e a edição do peso na tela Hoje.
 - A suíte e2e agora usa a data inicial do plano de forma determinística.
+- O modo de treino guarda cada série, oferece contagem de trabalho e descanso, sinal sonoro,
+  vibração quando disponível e tentativa de manter a tela ativa.
 
 ## Próximo passo
 
-Escolher a forma de distribuição para instalação: GitHub Pages público, hospedagem com acesso
-restrito ou pacote Android.
+Revisar a experiência em treinos reais e escolher a forma de distribuição para instalação:
+GitHub Pages público, hospedagem com acesso restrito ou pacote Android.

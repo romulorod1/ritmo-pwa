@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Icon } from '../components/Icon'
 import { NumberField } from '../components/NumberField'
+import { TrainingInsights } from '../components/TrainingInsights'
 import { WeightChart } from '../components/WeightChart'
 import type { AppData, BodyEntry } from '../types/domain'
 import { formatDateShort, todayIso } from '../utils/date'
@@ -40,6 +41,7 @@ export const ProgressPage = ({ data, onSave, onDelete }: { data: AppData; onSave
         <WeightChart entries={data.bodyEntries} />
         <p className="inline-note">{adjustmentMessage(rate)}</p>
       </section>
+      <TrainingInsights settings={data.settings} workoutLogs={data.workoutLogs} />
       <section className="card">
         <div className="card__heading"><div><p className="eyebrow">Novo registro</p><h2>Antropometria</h2></div><Icon name="scale" /></div>
         <div className="form-grid form-grid--2">

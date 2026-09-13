@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Icon } from '../components/Icon'
 import { NumberField } from '../components/NumberField'
 import { WorkoutLogModal } from '../components/WorkoutLogModal'
+import { WorkoutRunner } from '../components/WorkoutRunner'
 import type { AppData, BodyEntry, NutritionLog, WorkoutLog } from '../types/domain'
 import { addDays, daysBetween, formatDateLong, phaseForDate, todayIso, workoutForDate } from '../utils/date'
 import { latestWeightAverage, nextMilestone } from '../utils/progress'
@@ -24,6 +25,7 @@ export const TodayPage = ({ data, onSaveWorkout, onSaveNutrition, onSaveBody }: 
   const actualToday = todayIso()
   const [date, setDate] = useState(actualToday)
   const [workoutModal, setWorkoutModal] = useState(false)
+  const [workoutRunner, setWorkoutRunner] = useState(false)
   const [weight, setWeight] = useState<number | undefined>()
   const workout = workoutForDate(data.settings, date)
   const workoutLog = workout ? data.workoutLogs.find((log) => log.id === `${date}:${workout.id}`) : undefined
@@ -128,9 +130,10 @@ export const TodayPage = ({ data, onSaveWorkout, onSaveNutrition, onSaveBody }: 
               ))}
               {workout.exercises.length > 4 && <small>+ {workout.exercises.length - 4} exercícios no registro</small>}
             </div>
-            <button className={workoutLog?.completed ? 'button button--secondary button--full' : 'button button--primary button--full'} type="button" onClick={() => setWorkoutModal(true)}>
-              {workoutLog ? 'Revisar registro' : 'Registrar treino'}
-            </button>
+            <div className="workout-actions">
+              <button className="button button--primary button--full" type="button" onClick={() => setWorkoutRunner(true)}>{workoutLog?.completed ? 'Rever execução' : 'Iniciar treino'}</button>
+              <button className="text-button text-button--center" type="button" onClick={() => setWorkoutModal(true)}>{workoutLog ? 'Editar registro manualmente' : 'Registrar manualmente'}</button>
+            </div>
           </>
         ) : (
           <div className="empty-state"><p>Abra Treinos para associar uma sessão a este dia da semana.</p></div>
@@ -184,6 +187,9 @@ export const TodayPage = ({ data, onSaveWorkout, onSaveNutrition, onSaveBody }: 
 
       {workout && workoutModal && (
         <WorkoutLogModal date={date} workout={workout} existing={workoutLog} onSave={onSaveWorkout} onClose={() => setWorkoutModal(false)} />
+      )}
+      {workout && workoutRunner && (
+        <WorkoutRunner date={date} workout={workout} existing={workoutLog} onSave={onSaveWorkout} onClose={() => setWorkoutRunner(false)} />
       )}
     </main>
   )

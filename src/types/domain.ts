@@ -1,5 +1,8 @@
 export type WorkoutKind = 'boxing' | 'strength' | 'hybrid' | 'recovery'
 export type Readiness = 'green' | 'yellow' | 'red'
+export type ExerciseKind = 'strength' | 'power' | 'conditioning' | 'mobility'
+export type SetKind = 'warmup' | 'work' | 'drop'
+export type MuscleGroup = 'pernas' | 'posteriores' | 'peito' | 'costas' | 'ombros' | 'biceps' | 'triceps' | 'panturrilhas' | 'core' | 'potencia' | 'outros'
 
 export interface WorkoutExercise {
   id: string
@@ -8,7 +11,10 @@ export interface WorkoutExercise {
   reps: string
   rir: string
   note: string
-  kind: 'strength' | 'power' | 'conditioning' | 'mobility'
+  kind: ExerciseKind
+  restSeconds?: number
+  workSeconds?: number
+  muscleGroup?: MuscleGroup
 }
 
 export interface WorkoutTemplate {
@@ -73,6 +79,35 @@ export interface ExercisePerformance {
   loadKg?: number
   reps?: string
   rir?: number
+  sets?: WorkoutSet[]
+}
+
+export interface WorkoutSet {
+  id: string
+  kind: SetKind
+  completed: boolean
+  loadKg?: number
+  reps?: number
+  rir?: number
+  rpe?: number
+  restSeconds?: number
+}
+
+export interface ConditioningMetrics {
+  activity: string
+  distanceKm?: number
+  averageHeartRate?: number
+  maxHeartRate?: number
+  zone?: string
+  workSeconds?: number
+  restSeconds?: number
+  roundsCompleted?: number
+}
+
+export interface MartialMetrics {
+  roundsCompleted?: number
+  sparringRounds?: number
+  techniqueFocus?: string
 }
 
 export interface WorkoutLog {
@@ -86,6 +121,8 @@ export interface WorkoutLog {
   variant?: string
   notes: string
   performances: ExercisePerformance[]
+  conditioning?: ConditioningMetrics
+  martial?: MartialMetrics
   updatedAt: string
 }
 
@@ -129,4 +166,3 @@ export interface BackupFile {
   exportedAt: string
   data: AppData
 }
-
